@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name | Links</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================
+           🎨 THEME VARIABLES (EDIT EVERYTHING FROM HERE)
+        ========================================================== */
+
+        :root{
+            --bg-primary:#0f172a;
+            --bg-secondary:#111827;
+            --card-bg:rgba(255,255,255,0.06);
+
+            --text-primary:#ffffff;
+            --text-secondary:#cbd5e1;
+
+            --button-bg:#ffffff;
+            --button-text:#111827;
+
+            --button-hover:#38bdf8;
+            --button-hover-text:#ffffff;
+
+            --border:rgba(255,255,255,.15);
+
+            --shadow:0 15px 35px rgba(0,0,0,.30);
+            --shadow-hover:0 18px 40px rgba(56,189,248,.35);
+
+            --radius:20px;
+            --transition:.30s ease;
+        }
+
+        /* ==========================================================
+           RESET
+        ========================================================== */
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px 18px;
+
+            background:
+            radial-gradient(circle at top,#1e3a8a 0%,transparent 40%),
+            radial-gradient(circle at bottom,#312e81 0%,transparent 40%),
+            linear-gradient(135deg,var(--bg-primary),var(--bg-secondary));
+
+            color:var(--text-primary);
+        }
+
+        a{
+            text-decoration:none;
+            color:inherit;
+        }
+
+        img{
+            max-width:100%;
+            display:block;
+        }
+
+        /* ==========================================================
+           MAIN CARD
+        ========================================================== */
+
+        .container{
+            width:100%;
+            max-width:470px;
+        }
+
+        .card{
+            position:relative;
+
+            backdrop-filter:blur(18px);
+            background:var(--card-bg);
+
+            border:1px solid var(--border);
+
+            border-radius:30px;
+
+            padding:40px 25px;
+
+            box-shadow:var(--shadow);
+        }
+
+        /* ==========================================================
+           SHARE BUTTON
+        ========================================================== */
+
+        .share-btn{
+            position:absolute;
+            top:18px;
+            right:18px;
+
+            width:48px;
+            height:48px;
+
+            border:none;
+            outline:none;
+
+            border-radius:50%;
+
+            cursor:pointer;
+
+            color:white;
+
+            background:rgba(255,255,255,.10);
+
+            transition:var(--transition);
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .share-btn:hover{
+            transform:scale(1.08);
+            background:#38bdf8;
+        }
+
+        .share-btn svg{
+            width:22px;
+            height:22px;
+        }
+
+        /* ==========================================================
+           PROFILE
+        ========================================================== */
+
+        .profile{
+            text-align:center;
+        }
+
+        .avatar{
+            width:125px;
+            height:125px;
+
+            margin:auto;
+
+            border-radius:50%;
+            overflow:hidden;
+
+            border:4px solid rgba(255,255,255,.18);
+        }
+
+        .avatar img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        h1{
+            margin-top:20px;
+            font-size:1.9rem;
+            font-weight:800;
+        }
+
+        .bio{
+            margin-top:10px;
+            color:var(--text-secondary);
+            line-height:1.6;
+            font-size:.97rem;
+        }
+
+        /* ==========================================================
+           LINKS
+        ========================================================== */
+
+        .links{
+            margin-top:35px;
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+        }
+
+        .link-btn{
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            padding:18px;
+
+            background:var(--button-bg);
+            color:var(--button-text);
+
+            border-radius:18px;
+
+            font-weight:700;
+            font-size:1rem;
+
+            transition:var(--transition);
+
+            box-shadow:0 10px 20px rgba(0,0,0,.18);
+        }
+
+        .link-btn:hover{
+
+            transform:translateY(-4px) scale(1.02);
+
+            background:var(--button-hover);
+
+            color:var(--button-hover-text);
+
+            box-shadow:var(--shadow-hover);
+        }
+
+        /* ==========================================================
+           FOOTER
+        ========================================================== */
+
+        footer{
+            margin-top:35px;
+            text-align:center;
+            color:var(--text-secondary);
+            font-size:.85rem;
+        }
+
+        /* ==========================================================
+           RESPONSIVE
+        ========================================================== */
+
+        @media(min-width:768px){
+
+            .card{
+                padding:45px 35px;
+            }
+
+            .avatar{
+                width:135px;
+                height:135px;
+            }
+
+            h1{
+                font-size:2rem;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <main class="card">
+
+        <!-- SHARE BUTTON -->
+
+        <button class="share-btn" id="shareBtn" aria-label="Share">
+
+            <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7a2.48 2.48 0 0 0 0-1.39l7-4.11A2.99 2.99 0 1 0 15 5a3 3 0 0 0 .04.49l-7 4.11a3 3 0 1 0 0 4.8l7.13 4.2c-.03.16-.05.33-.05.5a3 3 0 1 0 3-3z"/>
+            </svg>
+
+        </button>
+
+        <!-- ======================================================
+             PROFILE SECTION
+        ======================================================= -->
+
+        <section class="profile">
+
+            <!-- ======================================================
+                 🔴 REPLACE PROFILE IMAGE BELOW
+            ======================================================= -->
+
+            <div class="avatar">
+
+                <!-- 🔴 PASTE YOUR PROFILE IMAGE URL HERE 🔴 -->
+
+                <img src="https://placehold.co/300x300" alt="Profile">
+
+            </div>
+
+            <!-- 🔴 CHANGE YOUR NAME HERE 🔴 -->
+
+            <h1>Your Name</h1>
+
+            <!-- 🔴 CHANGE YOUR BIO HERE 🔴 -->
+
+            <p class="bio">
+                Content Creator • Blogger • Developer
+            </p>
+
+        </section>
+
+        <!-- ======================================================
+             LINKS
+        ======================================================= -->
+
+        <section class="links">
+
+            <!-- ======================================================
+                 🔴 PASTE YOUR BLOG URL HERE 🔴
+            ======================================================= -->
+
+            <a href="https://YOUR-BLOG-LINK.com"
+               class="link-btn"
+               target="_blank">
+                📖 Blog Channel
+            </a>
+
+            <!-- ======================================================
+                 🔴 PASTE YOUR TELEGRAM CHANNEL URL HERE 🔴
+            ======================================================= -->
+
+            <a href="https://t.me/YOUR_CHANNEL"
+               class="link-btn"
+               target="_blank">
+                📢 Telegram Channel
+            </a>
+
+            <!-- ======================================================
+                 🔴 PASTE YOUR TELEGRAM GROUP URL HERE 🔴
+            ======================================================= -->
+
+            <a href="https://t.me/YOUR_GROUP"
+               class="link-btn"
+               target="_blank">
+                👥 Telegram Group
+            </a>
+
+            <!-- ======================================================
+                 🔴 PASTE YOUR INSTAGRAM URL HERE 🔴
+            ======================================================= -->
+
+            <a href="https://instagram.com/YOUR_USERNAME"
+               class="link-btn"
+               target="_blank">
+                📸 Instagram Profile
+            </a>
+
+        </section>
+
+        <footer>
+
+            © <span id="year"></span> Your Name. All Rights Reserved.
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script>
+
+document.getElementById("year").textContent=new Date().getFullYear();
+
+const shareButton=document.getElementById("shareBtn");
+
+shareButton.addEventListener("click",async()=>{
+
+    const shareData={
+        title:document.title,
+        text:"Check out my links!",
+        url:window.location.href
+    };
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share(shareData);
+
+        }catch(error){
+
+            console.log("Share cancelled.");
+
+        }
+
+    }else{
+
+        try{
+
+            await navigator.clipboard.writeText(window.location.href);
+
+            alert("Link copied to clipboard!");
+
+        }catch{
+
+            prompt("Copy this link:",window.location.href);
+
+        }
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
